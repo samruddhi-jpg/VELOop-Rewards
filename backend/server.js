@@ -9,6 +9,9 @@ require("dotenv").config();
 const app = express();
 
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const rewardRoutes = require("./routes/rewardRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 app.use(helmet());
 
@@ -19,12 +22,15 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/rewards", rewardRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
-    message: "VELoop Rewards Backend is running!"
+    message: "VELOop Rewards Backend is running!"
   });
 });
 
